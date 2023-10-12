@@ -1,0 +1,15 @@
+<div class="my-3 py-2 flex justify-center items-center w-screen">
+    <input 
+    #searchInput
+    (keypress.enter)="sendSearch(searchInput.value)"
+    class="p-1 m-2 rounded-lg w-100 animate-bounce
+          border-double border-red-500 border-4 shadow-lg
+          focus:animate-none" 
+    type="text" 
+    placeholder="enter name or pokemon number">
+    <label 
+    (click)="sendSearch(searchInput.value)"
+    class="p-2 animate-bounce cursor-pointer bg-red-400 text-white
+          border-double border-4 border-red-500 rounded-lg shadow-md
+          hover:bg-red-300 hover:animate-none">Search</label>
+  </div>
