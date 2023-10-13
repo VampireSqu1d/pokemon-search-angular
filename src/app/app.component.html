@@ -19,21 +19,29 @@
 </div>
 <!--ends search bar part -->
 
-<div *ngIf="pokemon != null && !notFound">
+<div *ngIf="pokemon != null && !pokemonNotFound">
       <div class="flex justify-center items-center my-2">
             <h1 class="capitalize text-4xl font-medium">{{pokemon.name}}</h1> 
 
             <h2 class="text-3xl font-semibold px-3 text-slate-700">N.º {{pokemon.id}}</h2>
-      </div>
+      </div><!-- ends name and id labels-->
 
       <div class="flex justify-center items-center">
             
             <div class="flex w-1/2 justify-center items-center columns-2">
-                  <img class="m-2 w-96 bg-slate-200 p-2 shadow-xl border-double rounded-2xl border-4 border-red-500" src="{{pokemonImageUrl}}">
+                  <img class="m-2 w-96 bg-slate-200 p-2 shadow-xl 
+                  border-double rounded-2xl border-4 border-red-500" src="{{pokemonImageUrl}}">
 
-                  <div class="w-full text-xl h-full"> <!--begins second column for description -->
+                  <div class="w-full text-xl h-auto"> <!--begins second column for info-->
                         
-                        <div class="m-2 p-2 columns-2 rounded-xl bg-blue-400 border-4 border-blue-600  border-double shadow-xl">
+                        <h3 class="text-red-600 text-md" *ngIf="DescriptionNotFound">Description could not be loaded :C</h3>
+                        <div *ngIf="!DescriptionNotFound"
+                        class="rounded-xl m-1 p-1 w-full
+                        border-4 border-green-600 bg-green-400 border-double"><!-- description card begins-->
+                        <p class="font-light p-1 text-md"> {{pokemonDescription}} </p>
+                        </div><!-- description card ends-->
+
+                        <div class="m-1 p-1 columns-2 rounded-xl bg-blue-400 border-4 border-blue-600  border-double shadow-xl">
                               <div class="w-full"> <!--begins first column of blue card -->
                                     <div class="text-md w-full p-1">
                                           <p class="font-bold">height</p> 
@@ -46,15 +54,25 @@
                               </div> <!--ends first column of blue card -->
       
                               <div class="w-full"> <!--begins second column of blue card -->
-                                    <p class="font-bold text-xl">Abilities:</p>
-                                    <div class="" *ngFor="let ability of pokemon.abilities">
-                                          <p 
+                                    <p class="font-bold text-xl">Abilities</p>
+                                    <div class="" >
+                                          <p
+                                          *ngFor="let ability of pokemon.abilities" 
                                           class="p-1"
-                                          [ngClass]="{'text-zinc-500': ability.is_hidden}">{{ability.ability.name}} </p>  
+                                          [ngClass]="{'text-zinc-600': ability.is_hidden}">{{ability.ability.name}} </p>  
                                     </div>
                               </div> <!--begins second column of blue card -->
                         </div><!--ends blue card -->
                         
+                        <!-- types of the pokemon --> 
+                        <div class="my-1 flex items-stretch w-full" >
+                              <div class="rounded-3xl border-4 
+                              border-double border-rose-600 bg-rose-300 
+                              px-2 py-1 m-1" 
+                              *ngFor="let type of pokemon.types">{{type.type.name}}</div>
+                        </div>
+
+
                   </div> <!--ends second column for description -->
             </div> 
             
@@ -63,7 +81,7 @@
       </div>
 </div>
 
-<div *ngIf="notFound">
+<div *ngIf="pokemonNotFound">
       <div class="flex justify-center items-center w-screen">
             <h1 class="text-red-600 text-4xl">Pokemon not found maybe you have a typo</h1>
       </div>
