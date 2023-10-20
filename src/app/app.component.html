@@ -1,7 +1,7 @@
 <div class="my-3 py-2 flex justify-center items-center w-screen">
       <form [formGroup]="pokeSearchForm" (ngSubmit)="sendSearch()">
             <input 
-            class="p-1 m-2 rounded-lg w-80 animate-bounce
+            class="p-1 m-2 rounded-lg w-52 sm:w-80 animate-bounce
                   border-double border-red-500 border-4 shadow-lg
                   focus:animate-none" 
             type="text" 
@@ -28,33 +28,34 @@
 
       <div class="flex justify-center items-center">
             
-            <div class="flex w-1/2 justify-center items-center columns-2">
-                  <img class="m-2 w-96 bg-slate-200 p-2 shadow-xl 
+            <div class="flex w-full columns-1 sm:w-1/2 justify-center items-center sm:columns-2">
+                  <img class="m-2 w-44 sm:w-96 bg-slate-200 p-2 shadow-xl 
                   border-double rounded-2xl border-4 border-red-500" src="{{pokemonImageUrl}}">
 
                   <div class="w-full text-xl h-auto"> <!--begins second column for info-->
                         
                         <h3 class="text-red-600 text-md" *ngIf="DescriptionNotFound">Description could not be loaded :C</h3>
                         <div *ngIf="!DescriptionNotFound"
-                        class="rounded-xl m-1 p-1 w-full
+                        class="rounded-xl m-1 p-1  text-sm sm:text-md max-w-prose
                         border-4 border-green-600 bg-green-400 border-double"><!-- description card begins-->
-                        <p class="font-light p-1 text-md"> {{pokemonDescription}} </p>
+                        <p class="font-light p-1 "> {{pokemonDescription}} </p>
                         </div><!-- description card ends-->
 
-                        <div class="m-1 p-1 columns-2 rounded-xl bg-blue-400 border-4 border-blue-600  border-double shadow-xl">
+                        <div class="m-1 p-1 columns-2 text-sm sm:text-md 
+                                    rounded-xl bg-blue-400 border-4 border-blue-600  border-double shadow-xl">
                               <div class="w-full"> <!--begins first column of blue card -->
-                                    <div class="text-md w-full p-1">
+                                    <div class=" w-full p-1">
                                           <p class="font-bold">height</p> 
                                           <p class="">{{pokemon.height/10}} m</p>
                                     </div>
-                                    <div class="text-md w-full p-1">
+                                    <div class="text-sm sm:text-md w-full p-1">
                                           <p class="font-bold">weight</p> 
                                           <p class="">{{pokemon.weight/10}} kg</p>
                                     </div>                                    
                               </div> <!--ends first column of blue card -->
       
-                              <div class="w-full"> <!--begins second column of blue card -->
-                                    <p class="font-bold text-xl">Abilities</p>
+                              <div class="w-full text-sm sm:text-md"> <!--begins second column of blue card -->
+                                    <p class="font-bold ">Abilities</p>
                                     <div class="" >
                                           <p
                                           *ngFor="let ability of pokemon.abilities" 
@@ -66,7 +67,7 @@
                         
                         <!-- types of the pokemon --> 
                         <div class="my-1 flex items-stretch w-full" >
-                              <div class="rounded-3xl border-4 
+                              <div class="rounded-3xl border-4 text-sm sm:text-md
                               border-double border-rose-600 bg-rose-300 
                               px-2 py-1 m-1" 
                               *ngFor="let type of pokemon.types">{{type.type.name}}</div>
